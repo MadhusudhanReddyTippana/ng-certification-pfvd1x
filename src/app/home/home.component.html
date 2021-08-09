@@ -1,0 +1,13 @@
+<h4>Template for main page:</h4>
+<div class="container-fluid">
+  <app-search (onSearch)="getLatestList($event)"></app-search>
+  
+  <div>
+
+    <div *ngFor="let weatherDetails of weatherDetailsArray">
+      <app-weather [weatherDetails]="weatherDetails" (onweatherRemoved)="getLatestAfterRemove()"></app-weather>
+    </div>
+
+  </div>
+</div>
+<hr>
