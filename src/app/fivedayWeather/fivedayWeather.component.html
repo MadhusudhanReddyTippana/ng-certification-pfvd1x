@@ -1,11 +1,21 @@
 <div class="container-fluid">
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">5-day forecast for Rancho Cordova</h3>
+    <h3 class="panel-title">5-day forecast for {{ name }}</h3>
 
   </div>
   <ul class="list-group">
-    <!----><li class="list-group-item">
+    <li class="list-group-item" *ngFor="let data of forecastData.list">
+      {{ data.dt_txt | date:'EEEE, MMMM d' }}:
+      Rain
+      - Min: {{ data.main.temp_min }}
+      - Max: {{ data.main.temp_max }}
+
+      <img class="icon" [src]="data.pic">
+    </li>
+  </ul>
+  <!-- <ul class="list-group">
+    <li class="list-group-item">
       Monday, Mar 23:
       Rain
       - Min: 45
@@ -41,7 +51,7 @@
 
       <img class="icon" src="https://www.angulartraining.com/images/weather/snow.png">
     </li>
-  </ul>
+  </ul> -->
 </div>
 <a routerLink="/">
   <button class="btn btn-success" tabindex="0" id="mainPageBtn">&lt; Back to main page</button>

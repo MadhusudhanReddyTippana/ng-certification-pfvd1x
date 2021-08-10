@@ -5,6 +5,8 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ForecastDetails } from '../../models/forecast-details.model';
 import { WeatherDetails } from '../../models/weather-details.model';
 import { LocalStorageService } from '../../services/localStorage.service';
 import { WeatherService } from '../../services/weather.service';
@@ -21,8 +23,11 @@ export class WeatherComponent implements OnInit {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
+
   removeItem(): void {
     this.localStorageService.removeZipCodeFromLocalStorage(
       this.weatherDetails.zipCode
@@ -32,5 +37,19 @@ export class WeatherComponent implements OnInit {
   
   ngOnInit() {
     console.log("WeatherComponent initialized");
+  }
+
+  onLoadFivedayWeather() {
+    this.weatherService.zipcode = this.weatherDetails.zipCode;
+    this.zipcode = this.weatherService.zipcode;
+    this.weatherService
+      .getForecast(this.zipcode)
+      .subscribe((forecastData:ForecastDetails)=>{
+          // console.log(forecastData);
+          this.weatherService.forecastData = forecastData;
+          // console.log(this.weatherService.forecastData);
+          this.router.navigate(['/forecast']);
+        }
+      );
   }
 }

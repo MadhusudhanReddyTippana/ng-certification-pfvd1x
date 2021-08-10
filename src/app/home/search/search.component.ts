@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ForecastDetails } from '../../models/forecast-details.model';
 import { WeatherDetails } from '../../models/weather-details.model';
 import { LocalStorageService } from '../../services/localStorage.service';
 import { WeatherService } from '../../services/weather.service';
@@ -19,9 +20,15 @@ export class SearchComponent implements OnInit{
     this.weatherService
       .getWeather(zipCodeInput.value)
       .subscribe((weatherDetails: WeatherDetails) => {
-        // console.log(weatherDetails);
+        console.log('weatherdetails: ', weatherDetails);
         this.onSearch.emit(weatherDetails);
       });
+    
+    // this.weatherService
+    //   .getForecast(zipCodeInput.value)
+    //   .subscribe((forecastData:ForecastDetails)=>{
+    //     console.log(forecastData);
+    //   });
 
     zipCodeInput.value = '';
   }

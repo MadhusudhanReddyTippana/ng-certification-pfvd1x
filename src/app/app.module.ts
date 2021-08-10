@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
 import { WeatherComponent } from './home/weather/weather.component';
 import { SearchComponent } from './home/search/search.component';
 import { HomeComponent } from './home/home.component';
 import { FivedayWeatherComponent } from './fivedayWeather/fivedayWeather.component';
+import { ForecastResolver } from './services/forecast-resolver.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  {path: 'forecast', component: FivedayWeatherComponent}
+  {path: 'forecast', component: FivedayWeatherComponent, resolve: {forecast: ForecastResolver}}
 ];
 
 @NgModule({
@@ -26,11 +26,11 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    HelloComponent,
     WeatherComponent,
     SearchComponent,
     FivedayWeatherComponent
   ],
+  providers: [ForecastResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

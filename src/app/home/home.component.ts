@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
     //this.weatherDetailsArray.push(data);
     this.localStorageService.addToLocalData(data);
     this.weatherDetailsArray = this.localStorageService.getFromLocalStorage();
-    // console.log(this.weatherDetailsArray);
+    console.log(data.zipCode);
+    console.log(this.weatherDetailsArray);
     // console.log(data.name);
     // console.log(data.weatherCondition);
     // console.log(data.temperature.temp_min);
