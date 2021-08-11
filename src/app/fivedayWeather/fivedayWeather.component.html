@@ -1,15 +1,15 @@
 <div class="container-fluid">
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">5-day forecast for {{ name }}</h3>
+    <h3 class="panel-title">{{ forecastData.name }} ({{ zipcode }})</h3>
 
   </div>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let data of forecastData.list">
       {{ data.dt_txt | date:'EEEE, MMMM d' }}:
-      Rain
-      - Min: {{ data.main.temp_min }}
-      - Max: {{ data.main.temp_max }}
+      {{ data.weatherCondition }}
+      - Min: {{ data.temperature.temp_min }}
+      - Max: {{ data.temperature.temp_max }}
 
       <img class="icon" [src]="data.pic">
     </li>

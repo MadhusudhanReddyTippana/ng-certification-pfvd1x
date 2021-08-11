@@ -10,6 +10,6 @@ export class ForecastResolver implements Resolve<ForecastDetails> {
   constructor(private weatherService: WeatherService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ForecastDetails> | Promise<ForecastDetails> | ForecastDetails {
-    return this.weatherService.getForecast('33411');
+    return this.weatherService.getForecast(route.params['zipcode']);
   }
 }

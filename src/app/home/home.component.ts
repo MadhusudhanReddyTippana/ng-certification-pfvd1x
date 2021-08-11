@@ -11,27 +11,25 @@ export class HomeComponent implements OnInit {
 
   constructor(private localStorageService: LocalStorageService) {}
 
-  weatherDetailsArray: WeatherDetails[] = [];
+  // weatherDetailsArray: WeatherDetails[] = [];
+  zipcodes: string[] = [];
 
   ngOnInit() {
-    console.log("HomeComponent initialized");
-    this.weatherDetailsArray = this.localStorageService.getFromLocalStorage();
+    // Getting zipcodes data from local storage and storing it in the "zipcodes" variable
+    this.zipcodes = this.localStorageService.getFromLocalStorage();
   }
 
-  getLatestList(data: WeatherDetails) {
+  getLatestList(data: string) {
     //this.weatherDetailsArray.push(data);
-    this.localStorageService.addToLocalData(data);
-    this.weatherDetailsArray = this.localStorageService.getFromLocalStorage();
-    console.log(data.zipCode);
-    console.log(this.weatherDetailsArray);
-    // console.log(data.name);
-    // console.log(data.weatherCondition);
-    // console.log(data.temperature.temp_min);
-    // console.log(data.temperature.temp_min);
-    // console.log(data.temperature.temp_max);
+    this.localStorageService.addToLocalData();
+    // this.weatherDetailsArray = this.localStorageService.getFromLocalStorage();
+    this.zipcodes = this.localStorageService.getFromLocalStorage();
+    // console.log(this.zipcodes);
+    // console.log(data);
   }
 
   getLatestAfterRemove() {
-    this.weatherDetailsArray = this.localStorageService.getFromLocalStorage();
+    // this.weatherDetailsArray = this.localStorageService.getFromLocalStorage();
+    this.zipcodes = this.localStorageService.getFromLocalStorage();
   }
 }

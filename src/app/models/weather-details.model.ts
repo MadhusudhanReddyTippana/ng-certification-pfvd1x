@@ -9,18 +9,22 @@ export class WeatherDetails {
   name: string;
   zipCode: string;
   dt: number;
+  dt_txt: Date;
   constructor(
     temperature: Temperature,
     condition: Weather,
     name: string,
     dt: number,
-    zipCode: string
+    zipCode: string,
+    dt_txt: Date
   ) {
     this.condition = condition;
     this.zipCode = zipCode;
     this.temperature = temperature;
     this.name = name;
     this.dt = dt;
+    this.dt_txt = dt_txt;
+    
     if (this.condition.main.includes('Clear')) {
       this.pic = this.pic + 'sun.png';
       this.weatherCondition = 'Sunny';

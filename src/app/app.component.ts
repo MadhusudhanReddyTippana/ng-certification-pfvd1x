@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherDetails } from './models/weather-details.model';
-import { LocalStorageService } from './services/localStorage.service';
-import { WeatherService } from './services/weather.service';
 
 @Component({
   selector: 'my-app',
@@ -33,6 +30,6 @@ export class AppComponent implements OnInit{
   // }
 
   ngOnInit() {
-    console.log("AppComponent initialized");
+    // console.log("AppComponent initialized");
   }
 }

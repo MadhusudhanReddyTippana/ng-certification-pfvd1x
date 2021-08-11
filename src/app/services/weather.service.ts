@@ -1,4 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,23 +17,16 @@ export class WeatherService {
 
   getWeather(zipCode: string): Observable<WeatherDetails> {
     const baseUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&appid=${this.apiKey}`;
-    // this.httpClient.get(baseUrl).subscribe((data: any) => {
-    //   // let weatherDetails:WeatherDetails={
-    //   //   temperature:data?.main,
-    //   //   condition:data?.weather[0]
-    //   // }
 
-    // });
     return this.httpClient.get(baseUrl).pipe(
       map((data: any) => {
-        // console.log(data);
-        //  console.log();
         let weatherDetails: WeatherDetails = new WeatherDetails(
           data?.main,
           data?.weather[0],
           data?.name,
           data?.dt,
-          zipCode
+          zipCode,
+          data?.dt_txt
         );
         return weatherDetails;
       })

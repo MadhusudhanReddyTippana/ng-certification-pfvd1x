@@ -11,29 +11,43 @@ import { WeatherService } from '../../services/weather.service';
 })
 export class SearchComponent implements OnInit{
   @Output() onSearch = new EventEmitter();
+
   constructor(
     private weatherService: WeatherService,
     private localStorageService: LocalStorageService
   ) {}
-  addZipCode(zipCodeInput: HTMLInputElement) {
-    // console.log(zipCodeInput.value);
-    this.weatherService
-      .getWeather(zipCodeInput.value)
-      .subscribe((weatherDetails: WeatherDetails) => {
-        console.log('weatherdetails: ', weatherDetails);
-        this.onSearch.emit(weatherDetails);
-      });
-    
-    // this.weatherService
-    //   .getForecast(zipCodeInput.value)
-    //   .subscribe((forecastData:ForecastDetails)=>{
-    //     console.log(forecastData);
-    //   });
 
+  addZipCode(zipCodeInput: HTMLInputElement) {
+    let zipcode = zipCodeInput.value;
+    // console.log(zipcode);
+    // this.weatherApiCall(zipCodeInput.value);
+    if(this.localStorageService.zipcodes === []) {
+      this.localStorageService.zipcodes.push(zipCodeInput.value);
+      this.onSearch.emit(zipcode);
+    } else {
+      if(this.localStorageService.zipcodes.indexOf(zipcode) === -1) {
+        this.localStorageService.zipcodes.push(zipCodeInput.value);
+        this.onSearch.emit(zipcode);
+      } 
+      else {
+        console.log('zipcode already in storage');
+      }
+    }
+
+    // console.log(this.localStorageService.zipcodes);
     zipCodeInput.value = '';
   }
   
   ngOnInit() {
-    console.log("SearchComponent initialized");
+    // console.log("SearchComponent initialized");
+  }
+
+  weatherApiCall(zipcode: string) {
+    this.weatherService
+      .getWeather(zipcode)
+      .subscribe((weatherDetails: WeatherDetails) => {
+        // console.log('weatherdetails: ', weatherDetails);
+        this.onSearch.emit(weatherDetails);
+      });
   }
 }

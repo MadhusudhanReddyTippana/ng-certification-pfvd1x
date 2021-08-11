@@ -11,9 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { FivedayWeatherComponent } from './fivedayWeather/fivedayWeather.component';
 import { ForecastResolver } from './services/forecast-resolver.service';
 
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  {path: 'forecast', component: FivedayWeatherComponent, resolve: {forecast: ForecastResolver}}
+  {path: 'forecast/:zipcode', component: FivedayWeatherComponent, resolve: {forecast: ForecastResolver}}
 ];
 
 @NgModule({

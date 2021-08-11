@@ -4,7 +4,7 @@ export class ForecastDetails {
   list: WeatherDetails[];
   name: string;
 
-  constructor(list: WeatherDetails[], name:string) {
+  constructor(list: any, name:string) {
     let dt = list[0].dt;
     let dateArray = [];
     for(let i=0; i<5; i++) {
@@ -14,7 +14,15 @@ export class ForecastDetails {
     let forecastArray = dateArray.map(el=>{
       for(let i=0; i<list.length; i++) {
         if(list[i].dt == el) {
-          return list[i];
+          let weatherDetails: WeatherDetails = new WeatherDetails(
+            list[i]?.main,
+            list[i]?.weather[0],
+            list[i]?.name,
+            list[i]?.dt,
+            list[i]?.zipCode,
+            list[i]?.dt_txt
+          );
+          return weatherDetails;
         }
       }
     });

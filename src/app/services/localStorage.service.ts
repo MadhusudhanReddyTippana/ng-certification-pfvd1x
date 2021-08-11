@@ -4,27 +4,30 @@ import { WeatherDetails } from '../models/weather-details.model';
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   weatherDetailsArray: WeatherDetails[] = [];
+  zipcodes: string[] = [];
 
-  getFromLocalStorage(): WeatherDetails[] {
-    var retrievedObject = localStorage.getItem('localData');
-    console.log(JSON.parse(retrievedObject));
-    return JSON.parse(retrievedObject);
+
+  getFromLocalStorage(): string[] {
+    let retrievedObject = localStorage.getItem('zipcodes');
+    if(JSON.parse(retrievedObject)) {
+      this.zipcodes = JSON.parse(localStorage.getItem('zipcodes'));
+      return JSON.parse(retrievedObject);
+    }
+    
   }
 
-  addToLocalData(WeatherDetails: WeatherDetails) {
-    this.weatherDetailsArray.push(WeatherDetails);
-    localStorage.setItem('localData', JSON.stringify(this.weatherDetailsArray));
+  addToLocalData() {
+    // this.weatherDetailsArray.push(WeatherDetails);
+    // localStorage.setItem('localData', JSON.stringify(this.weatherDetailsArray));
+    localStorage.setItem('zipcodes', JSON.stringify(this.zipcodes));
   }
 
-  removeFromLocalStorage(): void {
-    this.weatherDetailsArray = [];
-  }
 
   removeZipCodeFromLocalStorage(zipCode: string): void {
-    this.weatherDetailsArray.splice(
-      this.weatherDetailsArray.findIndex(x => x.zipCode === zipCode),
-      1
-    );
+    this.zipcodes.splice(this.zipcodes.indexOf(zipCode),1);
+    // console.log(this.zipcodes);
+    localStorage.setItem('zipcodes', JSON.stringify(this.zipcodes));
+
     localStorage.setItem('localData', JSON.stringify(this.weatherDetailsArray));
   }
 }

@@ -1,12 +1,12 @@
 <div class="well flex">
   <div>
-    <h3>{{weatherDetails.name}} ({{weatherDetails.zipCode}})</h3>
-    <h4>Current conditions: {{weatherDetails.weatherCondition}}</h4>
+    <h3>{{weatherDetails?.name}} ({{weatherDetails?.zipCode}})</h3>
+    <h4>Current conditions: {{weatherDetails?.weatherCondition}}</h4>
     <h4>Temperatures today:</h4>
     <p>
-      Current {{weatherDetails.temperature.temp}}
-      - Max {{weatherDetails.temperature.temp_min}}
-      - Min {{weatherDetails.temperature.temp_max}}
+      Current {{weatherDetails?.temperature.temp}}
+      - Max {{weatherDetails?.temperature.temp_min}}
+      - Min {{weatherDetails?.temperature.temp_max}}
     </p>
     <p>
       <!-- <a href="/forecast/95742">Show 5-day forecast for Rancho Cordova</a> -->
@@ -15,6 +15,6 @@
   </div>
   <div>
     <span class="close" (click)="removeItem()">×</span>
-    <img [src]="weatherDetails.pic">
+    <img [src]="weatherDetails?.pic">
   </div>
 </div>

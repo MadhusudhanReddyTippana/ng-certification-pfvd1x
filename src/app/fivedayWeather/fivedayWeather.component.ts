@@ -11,24 +11,26 @@ import { WeatherService } from '../services/weather.service';
 })
 export class FivedayWeatherComponent implements OnInit {
   zipcode: string;
-  name: string;
   forecastData: ForecastDetails;
 
   constructor(private weatherService: WeatherService,
     private route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log("ForecastCOMPONENT initialized");
+    this.zipcode = this.route.snapshot.params['zipcode'];
+
+    /**
+     * To get the returned data from route resolver service "ForecastResolver"
+     * Subscribing to data Observable to get data returned by resolver.
+     */
     this.route.data
       .subscribe(
         (data: Data) => {
           this.forecastData = data['forecast']
+          // console.log(this.forecastData);
+
         }
       );
-    this.zipcode = this.weatherService.zipcode;
-    // this.forecastData = this.weatherService.forecastData.list;
-    // this.name = this.weatherService.forecastData.name;
-    // console.log(this.forecastData);
   }
   
 }
