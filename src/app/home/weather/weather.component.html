@@ -1,4 +1,4 @@
-<div class="well flex">
+<div class="well flex"  *ngIf="weatherDetails">
   <div>
     <h3>{{weatherDetails?.name}} ({{weatherDetails?.zipCode}})</h3>
     <h4>Current conditions: {{weatherDetails?.weatherCondition}}</h4>
