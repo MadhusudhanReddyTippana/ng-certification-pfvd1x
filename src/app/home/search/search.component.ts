@@ -42,12 +42,12 @@ export class SearchComponent implements OnInit{
     // console.log("SearchComponent initialized");
   }
 
-  weatherApiCall(zipcode: string) {
-    this.weatherService
-      .getWeather(zipcode)
-      .subscribe((weatherDetails: WeatherDetails) => {
-        // console.log('weatherdetails: ', weatherDetails);
-        this.onSearch.emit(weatherDetails);
-      });
-  }
+  // weatherApiCall(zipcode: string) {
+  //   this.weatherService
+  //     .getWeather(zipcode)
+  //     .subscribe((weatherDetails: WeatherDetails) => {
+  //       // console.log('weatherdetails: ', weatherDetails);
+  //       this.onSearch.emit(weatherDetails);
+  //     });
+  // }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { ForecastDetails } from '../models/forecast-details.model';
 import { WeatherDetails } from '../models/weather-details.model';
 
@@ -17,7 +17,7 @@ export class WeatherService {
 
   getWeather(zipCode: string): Observable<WeatherDetails> {
     const baseUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&appid=${this.apiKey}`;
-
+    // console.log('Api call is made');
     return this.httpClient.get(baseUrl).pipe(
       map((data: any) => {
         let weatherDetails: WeatherDetails = new WeatherDetails(
@@ -29,6 +29,10 @@ export class WeatherService {
           data?.dt_txt
         );
         return weatherDetails;
+      }),
+      catchError((error: any) => {
+        window.alert(`${error.status}: ${error.statusText}`);
+        return throwError(error.message);
       })
     );
   }
@@ -40,6 +44,10 @@ export class WeatherService {
         map((data: any)=> {
           let forecastData: ForecastDetails = new ForecastDetails(data?.list, data?.city.name);
           return forecastData;
+        }),
+        catchError((error: any) => {
+          window.alert(`${error.status}: ${error.statusText}`);
+          return throwError(error.message);
         })
       );
   }

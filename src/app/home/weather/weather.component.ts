@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   OnInit,
   Output
 } from '@angular/core';
@@ -16,7 +15,7 @@ import { WeatherService } from '../../services/weather.service';
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
-export class WeatherComponent implements OnInit, OnChanges {
+export class WeatherComponent implements OnInit {
   weatherDetails: WeatherDetails;
   // @Input() weatherDetails: WeatherDetails;
   @Input() zipcode: string;
