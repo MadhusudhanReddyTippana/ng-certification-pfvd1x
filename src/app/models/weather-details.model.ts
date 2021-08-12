@@ -24,7 +24,7 @@ export class WeatherDetails {
     this.name = name;
     this.dt = dt;
     this.dt_txt = dt_txt;
-    
+
     if (this.condition.main.includes('Clear')) {
       this.pic = this.pic + 'sun.png';
       this.weatherCondition = 'Sunny';

@@ -6,14 +6,12 @@ export class LocalStorageService {
   weatherDetailsArray: WeatherDetails[] = [];
   zipcodes: string[] = [];
 
-
   getFromLocalStorage(): string[] {
     let retrievedObject = localStorage.getItem('zipcodes');
-    if(JSON.parse(retrievedObject)) {
+    if (JSON.parse(retrievedObject)) {
       this.zipcodes = JSON.parse(localStorage.getItem('zipcodes'));
       return JSON.parse(retrievedObject);
     }
-    
   }
 
   addToLocalData() {
@@ -22,9 +20,8 @@ export class LocalStorageService {
     localStorage.setItem('zipcodes', JSON.stringify(this.zipcodes));
   }
 
-
   removeZipCodeFromLocalStorage(zipCode: string): void {
-    this.zipcodes.splice(this.zipcodes.indexOf(zipCode),1);
+    this.zipcodes.splice(this.zipcodes.indexOf(zipCode), 1);
     // console.log(this.zipcodes);
     localStorage.setItem('zipcodes', JSON.stringify(this.zipcodes));
 

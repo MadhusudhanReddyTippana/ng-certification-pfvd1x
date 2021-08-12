@@ -1,21 +1,21 @@
 <div class="container-fluid">
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{ forecastData.name }} ({{ zipcode }})</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ forecastData.name }} ({{ zipcode }})</h3>
 
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let data of forecastData.list">
+        {{ data.dt_txt | date:'EEEE, MMMM d' }}:
+        {{ data.weatherCondition }}
+        - Min: {{ data.temperature.temp_min }}<span>&#176;</span>F
+        - Max: {{ data.temperature.temp_max }}<span>&#176;</span>F
+
+        <img class="icon" [src]="data.pic">
+      </li>
+    </ul>
   </div>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let data of forecastData.list">
-      {{ data.dt_txt | date:'EEEE, MMMM d' }}:
-      {{ data.weatherCondition }}
-      - Min: {{ data.temperature.temp_min }}
-      - Max: {{ data.temperature.temp_max }}
-
-      <img class="icon" [src]="data.pic">
-    </li>
-  </ul>
-</div>
-<a routerLink="/">
-  <button class="btn btn-success" tabindex="0" id="mainPageBtn">&lt; Back to main page</button>
-</a>
+  <a routerLink="/">
+    <button class="btn btn-success" tabindex="0" id="mainPageBtn">&lt; Back to main page</button>
+  </a>
 </div>

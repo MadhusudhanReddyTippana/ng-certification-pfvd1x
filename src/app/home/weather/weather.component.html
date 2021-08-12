@@ -1,12 +1,12 @@
-<div class="well flex"  *ngIf="weatherDetails">
+<div class="well flex" *ngIf="weatherDetails">
   <div>
     <h3>{{weatherDetails?.name}} ({{weatherDetails?.zipCode}})</h3>
     <h4>Current conditions: {{weatherDetails?.weatherCondition}}</h4>
     <h4>Temperatures today:</h4>
     <p>
-      Current {{weatherDetails?.temperature.temp}}
-      - Max {{weatherDetails?.temperature.temp_min}}
-      - Min {{weatherDetails?.temperature.temp_max}}
+      Current {{weatherDetails?.temperature.temp}}<span>&#176;</span>F
+      - Max {{weatherDetails?.temperature.temp_max}}<span>&#176;</span>F
+      - Min {{weatherDetails?.temperature.temp_min}}<span>&#176;</span>F
     </p>
     <p>
       <a (click)="onLoadFivedayWeather()">Show 5-day forecast for Rancho Cordova</a>

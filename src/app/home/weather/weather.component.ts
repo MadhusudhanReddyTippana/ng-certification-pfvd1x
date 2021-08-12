@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeatherDetails } from '../../models/weather-details.model';
 import { LocalStorageService } from '../../services/localStorage.service';
@@ -15,7 +15,6 @@ export class WeatherComponent implements OnInit {
   @Input() zipcode: string;
   @Output() onweatherRemoved = new EventEmitter();
 
-
   constructor(
     private localStorageService: LocalStorageService,
     private weatherService: WeatherService,
@@ -28,15 +27,15 @@ export class WeatherComponent implements OnInit {
     );
     this.onweatherRemoved.emit();
   }
-  
+
   ngOnInit() {
     // Doing API call when the component is initialised to get data.
-    this.weatherService.getWeather(this.zipcode)
+    this.weatherService
+      .getWeather(this.zipcode)
       .subscribe((weatherDetails: WeatherDetails) => {
         this.weatherDetails = weatherDetails;
       });
   }
-  
 
   onLoadFivedayWeather() {
     // saving current component zipcode and moving to forecast/'zipcode'.

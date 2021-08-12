@@ -6,35 +6,31 @@ import { LocalStorageService } from '../../services/localStorage.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
   @Output() onSearch = new EventEmitter();
 
-  constructor(
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private localStorageService: LocalStorageService) {}
 
   addZipCode(zipCodeInput: HTMLInputElement) {
     // Saving the zipcode user entered in local storage and emiting that value to parent(Home) component
     let zipcode = zipCodeInput.value;
 
-    if(this.localStorageService.zipcodes === []) {
+    if (this.localStorageService.zipcodes === []) {
       this.localStorageService.zipcodes.push(zipCodeInput.value);
       this.onSearch.emit(zipcode);
     } else {
-      if(this.localStorageService.zipcodes.indexOf(zipcode) === -1) {
+      if (this.localStorageService.zipcodes.indexOf(zipcode) === -1) {
         this.localStorageService.zipcodes.push(zipCodeInput.value);
         this.onSearch.emit(zipcode);
-      } 
-      else {
+      } else {
         console.log('zipcode already in storage');
       }
     }
 
     zipCodeInput.value = '';
   }
-  
+
   ngOnInit() {
     // console.log("SearchComponent initialized");
   }
-
 }
