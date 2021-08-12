@@ -14,7 +14,8 @@ import { ForecastResolver } from './services/forecast-resolver.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  {path: 'forecast/:zipcode', component: FivedayWeatherComponent, resolve: {forecast: ForecastResolver}}
+  { path : 'forecast' , redirectTo : '' , pathMatch : 'full'},
+  { path: 'forecast/:zipcode', component: FivedayWeatherComponent, resolve: {forecast: ForecastResolver} }
 ];
 
 @NgModule({
