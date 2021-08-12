@@ -1,24 +1,13 @@
-<h4>Template for main page:</h4>
+<h4>USA WEATHER</h4>
 <div class="container-fluid">
   <app-search (onSearch)="getLatestList($event)"></app-search>
-  
   <div>
-
     <div *ngFor="let zipcode of zipcodes">
       <app-weather
         [zipcode]="zipcode"
         (onweatherRemoved)="getLatestAfterRemove()">
       </app-weather>
-      <!-- <app-weather 
-        [weatherDetails]="weatherDetails"
-        [zipcode]="weatherDetails.zipCode"
-        (onweatherRemoved)="getLatestAfterRemove()">
-      </app-weather> -->
     </div>
-    <!-- <div *ngFor="let zipcode of zipcodes">
-      <app-weather [zipcode]="zipcode" (onweatherRemoved)="getLatestAfterRemove()"></app-weather>
-    </div> -->
-
   </div>
 </div>
 <hr>

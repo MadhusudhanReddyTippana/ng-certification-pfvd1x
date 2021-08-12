@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { WeatherDetails } from '../../models/weather-details.model';
 import { LocalStorageService } from '../../services/localStorage.service';
@@ -36,29 +30,17 @@ export class WeatherComponent implements OnInit {
   }
   
   ngOnInit() {
-    // console.log("WeatherComponent initialized");
-    // console.log(this.weatherDetails, this.zipcode);
+    // Doing API call when the component is initialised to get data.
     this.weatherService.getWeather(this.zipcode)
       .subscribe((weatherDetails: WeatherDetails) => {
         this.weatherDetails = weatherDetails;
-        // console.log('weathercomponent: ', this.weatherDetails);
       });
-    //   console.log('after api call');
   }
   
 
   onLoadFivedayWeather() {
+    // saving current component zipcode and moving to forecast/'zipcode'.
     this.weatherService.zipcode = this.weatherDetails.zipCode;
-    // this.weatherService
-    //   .getForecast(this.zipcode)
-    //   .subscribe((forecastData:ForecastDetails)=>{
-    //       // console.log(forecastData);
-    //       this.weatherService.forecastData = forecastData;
-    //       // console.log(this.weatherService.forecastData);
-    //       this.router.navigate(['/forecast', this.zipcode]);
-    //     }
-    //   );
     this.router.navigate(['/forecast', this.weatherDetails.zipCode]);
-
   }
 }

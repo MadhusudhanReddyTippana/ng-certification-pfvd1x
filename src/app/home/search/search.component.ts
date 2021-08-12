@@ -1,8 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ForecastDetails } from '../../models/forecast-details.model';
-import { WeatherDetails } from '../../models/weather-details.model';
 import { LocalStorageService } from '../../services/localStorage.service';
-import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-search',
@@ -13,14 +10,13 @@ export class SearchComponent implements OnInit{
   @Output() onSearch = new EventEmitter();
 
   constructor(
-    private weatherService: WeatherService,
     private localStorageService: LocalStorageService
   ) {}
 
   addZipCode(zipCodeInput: HTMLInputElement) {
+    // Saving the zipcode user entered in local storage and emiting that value to parent(Home) component
     let zipcode = zipCodeInput.value;
-    // console.log(zipcode);
-    // this.weatherApiCall(zipCodeInput.value);
+
     if(this.localStorageService.zipcodes === []) {
       this.localStorageService.zipcodes.push(zipCodeInput.value);
       this.onSearch.emit(zipcode);
@@ -34,7 +30,6 @@ export class SearchComponent implements OnInit{
       }
     }
 
-    // console.log(this.localStorageService.zipcodes);
     zipCodeInput.value = '';
   }
   
@@ -42,12 +37,4 @@ export class SearchComponent implements OnInit{
     // console.log("SearchComponent initialized");
   }
 
-  // weatherApiCall(zipcode: string) {
-  //   this.weatherService
-  //     .getWeather(zipcode)
-  //     .subscribe((weatherDetails: WeatherDetails) => {
-  //       // console.log('weatherdetails: ', weatherDetails);
-  //       this.onSearch.emit(weatherDetails);
-  //     });
-  // }
 }

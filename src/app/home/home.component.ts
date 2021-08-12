@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
   }
 
   getLatestList(data: string) {
-    
     this.localStorageService.addToLocalData();
     this.zipcodes = this.localStorageService.getFromLocalStorage();
   }

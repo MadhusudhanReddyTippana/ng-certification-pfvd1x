@@ -28,6 +28,6 @@ export class LocalStorageService {
     // console.log(this.zipcodes);
     localStorage.setItem('zipcodes', JSON.stringify(this.zipcodes));
 
-    localStorage.setItem('localData', JSON.stringify(this.weatherDetailsArray));
+    // localStorage.setItem('localData', JSON.stringify(this.weatherDetailsArray));
   }
 }

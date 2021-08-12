@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ForecastDetails } from '../models/forecast-details.model';
 import { WeatherDetails } from '../models/weather-details.model';
+import { LocalStorageService } from './localStorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,12 @@ export class WeatherService {
   private apiKey: string = '5a4b2d457ecbef9eb2a71e480b947604';
   forecastData: ForecastDetails;
   
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+    private localStorageService: LocalStorageService) {}
 
   getWeather(zipCode: string): Observable<WeatherDetails> {
     const baseUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&appid=${this.apiKey}`;
-    // console.log('Api call is made');
+    
     return this.httpClient.get(baseUrl).pipe(
       map((data: any) => {
         let weatherDetails: WeatherDetails = new WeatherDetails(
@@ -32,6 +34,7 @@ export class WeatherService {
       }),
       catchError((error: any) => {
         window.alert(`${error.status}: ${error.statusText}`);
+        this.localStorageService.removeZipCodeFromLocalStorage(this.zipcode);
         return throwError(error.message);
       })
     );

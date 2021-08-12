@@ -18,7 +18,6 @@ export class FivedayWeatherComponent implements OnInit {
 
   ngOnInit() {
     this.zipcode = this.route.snapshot.params['zipcode'];
-
     /**
      * To get the returned data from route resolver service "ForecastResolver"
      * Subscribing to data Observable to get data returned by resolver.
@@ -27,8 +26,6 @@ export class FivedayWeatherComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.forecastData = data['forecast']
-          // console.log(this.forecastData);
-
         }
       );
   }
